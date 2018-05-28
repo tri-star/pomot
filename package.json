@@ -1,0 +1,26 @@
+{
+  "name": "pomot",
+  "version": "0.0.0",
+  "description": "Pomotodo app.",
+  "main": "index.js",
+  "author": "tristar",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "chalk": "^2.4.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "ora": "^2.1.0",
+    "rimraf": "^2.6.2",
+    "vue-loader": "^15.2.2",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.9.1",
+    "webpack-cli": "^2.1.4",
+    "webpack-manifest-plugin": "^2.0.3"
+  }
+}
