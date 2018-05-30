@@ -6,13 +6,17 @@ const {VueLoaderPlugin} = require('vue-loader')
 
 module.exports = {
     mode: 'development',
-    entry: 'main.js',
+    entry: path.join(__dirname, '../src/main.js'),
     output: {
         filename: 'main-[chunkhash:6].js',
         path: path.join(__dirname, '../dist')
     },
     module: {
         rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
             {
                 test: /\.js$/,
                 use: {
@@ -57,6 +61,10 @@ module.exports = {
             }
         }),
         new VueLoaderPlugin
-    ]
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, '/../dist'),
+        port: 3000
+    }
 
 }
