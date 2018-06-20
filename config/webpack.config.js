@@ -3,12 +3,13 @@
 const path = require('path')
 const webpack = require('webpack')
 const {VueLoaderPlugin} = require('vue-loader')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     mode: 'development',
     entry: path.join(__dirname, '../src/main.js'),
     output: {
-        filename: 'main-[chunkhash:6].js',
+        filename: 'main.js',
         path: path.join(__dirname, '../dist')
     },
     module: {
@@ -30,12 +31,13 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     'vue-style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
                             sourceMap: true
                         }
-                    }
+                    },
 
                 ]
 
@@ -60,7 +62,11 @@ module.exports = {
                 NODE_ENV: JSON.stringify('development')
             }
         }),
-        new VueLoaderPlugin
+        new VueLoaderPlugin,
+        new MiniCssExtractPlugin({
+            filename: 'main.css',
+            path: path.join(__dirname, '../dist')
+        })
     ],
     devServer: {
         contentBase: path.join(__dirname, '/../dist'),
