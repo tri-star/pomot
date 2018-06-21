@@ -35,6 +35,7 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
+                            minimize: true,
                             sourceMap: true
                         }
                     },
@@ -47,7 +48,8 @@ module.exports = {
     optimization: {
         splitChunks: {
             chunks: 'initial'
-        }
+        },
+        minimize: true,
     },
     resolve: {
         extensions: ['.js', '.vue'],
