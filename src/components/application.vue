@@ -6,7 +6,7 @@
             <nav></nav>
         </header>
         <article class="body-container">
-            <p>start: {{ test }}</p>
+            <PomotTimer/>
         </article>
         <aside>Menu</aside>
         <footer>Footer</footer>
@@ -16,8 +16,11 @@
 
 <script>
 
+    import PomotTimer from './timer'
+
     module.exports = {
         name: 'Application',
+        components: { PomotTimer: PomotTimer },
         data: function() {
             return {
                 'test': 100
@@ -29,6 +32,12 @@
 
 
 <style>
+
+.clearfix:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
 
 @media screen and (max-width: 479px) {
     #application {
