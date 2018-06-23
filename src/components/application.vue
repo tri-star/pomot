@@ -2,7 +2,7 @@
 
     <div id="application">
         <header>
-            <h1>Application</h1>
+            <h1>Pomot</h1>
             <nav></nav>
         </header>
         <article class="body-container">
