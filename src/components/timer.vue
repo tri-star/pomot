@@ -1,8 +1,8 @@
 <template>
 
 <div class="timer-container clearfix">
-    <div class="top-label">some text</div>
     <div class="timer">{{ remainTime }}</div>
+    <div class="state-label">{{ labelText }}</div>
     <div class="action-area">
 
         <button class="action-button" @click="startTimer()" v-if="state == 0">START</button>
@@ -53,6 +53,23 @@ export default {
             const seconds = this.remainSeconds % 60;
             return sprintf('%d.%02d', min, seconds) 
         },
+        labelText: function() {
+            switch(this.state) {
+                case TimerState.WAIT:
+                    return '"START"を押してください';
+                case TimerState.RUNNING:
+                    return '実行中...';
+                case TimerState.DONE:
+                    return '"Save"または"Cancel"を選んでください';
+                case TimerState.BREAK_WAIT:
+                    return '"START"を押すと休憩を開始します';
+                case TimerState.BREAKING:
+                    return '休憩中...';
+                case TimerState.BREAK_DONE:
+                    return '休憩終了！';
+            }
+            return '';
+        }
     },
     methods: {
         startTimer: function() {
@@ -88,9 +105,10 @@ export default {
 .timer-container {
 }
 
-.top-label {
+.state-label {
     width: 100%;
-    height: 50px;
+    height: 30px;
+    line-height: 30px;
     margin: 10px 5px;
     text-align: center;
     float: left;
@@ -98,8 +116,8 @@ export default {
 .timer {
     width: 100%;
     height: 100px;
-    font-size: 3em;
-    margin: 10px 5px;
+    font-size: 6em;
+    margin: 30px 5px;
     text-align: center;
     float: left;
 }
