@@ -43,7 +43,7 @@
     #application {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 60px 60px 1fr 60px;
+        grid-template-rows: 60px 60px auto 60px;
     }
 
     #application header {
@@ -61,7 +61,7 @@
     #application .body-container {
         grid-column: 1 / 2;
         grid-row: 3 / 4;
-        min-height: 400px;
+        min-height: 500px;
     }
 
     #application footer {

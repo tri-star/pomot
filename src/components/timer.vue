@@ -7,10 +7,7 @@
 
         <button class="action-button" @click="startTimer()" v-if="state == 0">START</button>
         <button class="action-button" @click="stopTimer()" v-if="state == 1">STOP</button>
-        <template v-if="state==2">
-            <button class="action-button" @click="save()" >Save</button>
-            <button class="action-button" @click="cancel()" >Cancel</button>
-        </template>
+        <LogForm v-if="state==2" />
 
     </div>
 </div>
@@ -21,6 +18,8 @@
 <script>
 
 import {sprintf} from 'sprintf-js'
+import InputTag from 'vue-input-tag'
+import LogForm  from './log-form'
 
 export class TimerState  {
     static get WAIT() { return 0 }
@@ -33,6 +32,7 @@ export class TimerState  {
 
 export default {
     name: 'PomotTimer',
+    components: {InputTag, LogForm},
     props: {
         initialSeconds: {
             default: 25 * 60
@@ -88,6 +88,7 @@ export default {
             this.state = TimerState.WAIT;
         },
         save: function() {
+            alert(this.tags)
             this.resetTimer();
         }, 
         cancel: function() {
@@ -95,6 +96,9 @@ export default {
                 return false;
             }
             this.resetTimer();
+        },
+        onUpdateTag: function(tags) {
+            this.tags = tags
         }
     },
 }
