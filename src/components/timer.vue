@@ -1,15 +1,22 @@
 <template>
 
 <div class="timer-container clearfix">
+    <transition name="toast">
+        <div id="toast" v-if="showToast">{{ toastMessage }}</div>
+    </transition>
     <div class="timer">{{ remainTime }}</div>
     <div class="state-label">{{ labelText }}</div>
-    <div class="action-area">
 
-        <button class="action-button" @click="startTimer()" v-if="state == 0">START</button>
-        <button class="action-button" @click="stopTimer()" v-if="state == 1">STOP</button>
-        <LogForm v-if="state==2" />
+    <transition name="actionarea">
+        <div class="action-area">
 
-    </div>
+            <button class="action-button" @click="startTimer()" v-if="state == 0">START</button>
+            <button class="action-button" @click="stopTimer()" v-if="state == 1">STOP</button>
+            <button class="action-button" @click="startTimer()" v-if="state == 3">BREAK</button>
+            <LogForm v-if="state==2" @save="onSave"/>
+
+        </div>
+    </transition>
 </div>
 
 </template>
@@ -45,6 +52,8 @@ export default {
             remainSeconds: this.initialSeconds,
             actionName: 'START',
             timer: null,
+            toastMessage: '',
+            showToast: false,
         }
     },
     computed: {
@@ -87,18 +96,24 @@ export default {
             this.remainSeconds = this.initialSeconds;
             this.state = TimerState.WAIT;
         },
-        save: function() {
-            alert(this.tags)
-            this.resetTimer();
-        }, 
-        cancel: function() {
-            if(!confirm('今回の作業を破棄しますか？')) {
-                return false;
+        onSave: function(result) {
+            if(!result.succeed) {
+                this.setToast('保存に失敗しました');
             }
-            this.resetTimer();
+            if(result.saved) {
+                this.setToast('保存しました');
+                this.state = TimerState.BREAK_WAIT;
+            } else {
+                this.setToast('破棄しました');
+                this.resetTimer();
+            }
         },
-        onUpdateTag: function(tags) {
-            this.tags = tags
+        setToast: function(message) {
+            this.toastMessage = message;
+            this.showToast = true;
+            setTimeout(() => {
+                this.showToast = false;
+            }, 2000);
         }
     },
 }
@@ -135,6 +150,36 @@ export default {
 }
 .action-area button {
     padding: 10px;
+}
+
+#toast {
+    position: absolute;
+    height: 30px;
+    line-height: 30px;
+    width: 80%;
+    padding: 10px;
+    left: 50%;
+    border: 1px solid rgba(223, 218, 170, 100%);
+    transform: translate(-50%, 0);
+    background-color:rgba(255, 250, 205, 83%);
+    color:rgba(205, 133, 63, 100%);
+    border-radius: 4px;
+}
+
+.toast-enter, .toast-leave-to {
+    opacity: 0;
+    height: 0px;
+}
+
+.toast-enter-active, .toast-leave-active {
+    transition: all 600ms ease;
+}
+
+.actionarea-enter, .actionarea-leave-to{
+    height: 0px;
+}
+.actionarea-enter-active, .actionarea-leave-active {
+    transition: all 500ms ease;
 }
 
 </style>
