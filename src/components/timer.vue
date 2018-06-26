@@ -162,7 +162,7 @@ export default {
     border: 1px solid rgba(223, 218, 170, 100%);
     transform: translate(-50%, 0);
     background-color:rgba(255, 250, 205, 83%);
-    color:rgba(205, 133, 63, 100%);
+    color:rgba(160, 105, 51, 100%);
     border-radius: 4px;
 }
 
