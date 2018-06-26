@@ -1,9 +1,16 @@
 <template>
     <div class="log-form">
-        <div class="header-col">説明:</div>
-        <div class="col"><input type="text" id="log-form-description"></div>
-        <div class="header-col">タグ:</div>
-        <VueInputTag class="col" tags.sync="tags" placeholder="タグを入力" @update:tags="onUpdateTag" />
+
+        <div class="log-form-table">
+            <div class="row">
+                <div class="header-col">説明:</div>
+                <div class="col"><input type="text" id="log-form-description"></div>
+            </div>
+            <div class="row">
+                <div class="header-col">タグ:</div>
+                <div class="col"><VueInputTag tags.sync="tags" placeholder="タグを入力" @update:tags="onUpdateTag" /></div>
+            </div>
+        </div>
         <div class="action-area">
             <button class="action-button" @click="save()" >Save</button>
             <button class="action-button" @click="cancel()" >Cancel</button>
@@ -51,28 +58,40 @@ export default {
 <style scoped>
 
     .log-form {
-        display: flex;
-        flex-wrap: wrap;
     }
 
-    .log-form .header-col {
-        margin: 5px;
-        padding: 5px;
-        width: 10%;
+    .log-form-table {
+        display: table;
+        margin: auto;
+        border-collapse: separate;
+        border-spacing: 5px;
+    }
+    .log-form-table .row {
+        display: table-row;
+    }
+
+    .log-form-table .header-col {
+        display:table-cell;
+        width: 60px;
+        height: 40px;
         text-align: right;
     }
-    .log-form .col {
-        margin: 5px;
-        padding: 5px;
-        width: 75%;
+    .log-form-table .col {
+        display:table-cell;
+        width: 280px;
+        height: 40px;
         text-align: left;
     }
     .log-form .col input {
-        width: 100%;
+        width: 280px;
     }
     .log-form .action-area {
         margin: 5px;
         padding: 5px;
         width: 100%;
+    }
+    .log-form .action-area button {
+        padding: 10px;
+        margin: 0px 10px;
     }
 </style>
