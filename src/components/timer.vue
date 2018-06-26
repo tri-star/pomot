@@ -7,16 +7,16 @@
     <div class="timer">{{ remainTime }}</div>
     <div class="state-label">{{ labelText }}</div>
 
-    <transition name="actionarea">
-        <div class="action-area">
+    <div class="action-area">
 
-            <button class="action-button" @click="startTimer()" v-if="state == 0">START</button>
-            <button class="action-button" @click="stopTimer()" v-if="state == 1">STOP</button>
-            <button class="action-button" @click="startTimer()" v-if="state == 3">BREAK</button>
-            <LogForm v-if="state==2" @save="onSave"/>
+        <button class="action-button" @click="startTimer()" v-if="state == 0">START</button>
+        <button class="action-button" @click="stopTimer()" v-if="state == 1">STOP</button>
+        <button class="action-button" @click="breakStart()" v-if="state == 3">BREAK</button>
+        <button class="action-button" @click="breakDone()" v-if="state == 4">STOP</button>
+        <button class="action-button" @click="startTimer()" v-if="state == 5">START</button>
+        <LogForm v-if="state==2" @save="onSave"/>
 
-        </div>
-    </transition>
+    </div>
 </div>
 
 </template>
@@ -42,8 +42,12 @@ export default {
     components: {InputTag, LogForm},
     props: {
         initialSeconds: {
-            default: 25 * 60
-        }
+            default: 1 * 60
+        },
+        initialBreakSeconds: {
+            default: 1 * 60
+        },
+
     },
     data: function() {
         return {
@@ -71,11 +75,11 @@ export default {
                 case TimerState.DONE:
                     return '"Save"または"Cancel"を選んでください';
                 case TimerState.BREAK_WAIT:
-                    return '"START"を押すと休憩を開始します';
+                    return '"Break"を押すと休憩を開始します';
                 case TimerState.BREAKING:
                     return '休憩中...';
                 case TimerState.BREAK_DONE:
-                    return '休憩終了！';
+                    return '休憩終了！次の作業を開始する場合、"Start"を押してください';
             }
             return '';
         }
@@ -84,8 +88,12 @@ export default {
         startTimer: function() {
             const self = this;
             this.state = TimerState.RUNNING;
+            this.remainSeconds = this.initialSeconds;
             this.timer = setInterval(() => {
                 self.remainSeconds--;
+                if(self.remainSeconds <= 0) {
+                    this.stopTimer();
+                }
             }, 1000);
         },
         stopTimer: function() {
@@ -95,6 +103,21 @@ export default {
         resetTimer: function() {
             this.remainSeconds = this.initialSeconds;
             this.state = TimerState.WAIT;
+        },
+        breakStart: function() {
+            const self = this;
+            this.state = TimerState.BREAKING;
+            this.remainSeconds = this.initialBreakSeconds;
+            this.timer = setInterval(() => {
+                self.remainSeconds--;
+                if(self.remainSeconds <= 0) {
+                    this.breakDone();
+                }
+            }, 1000);
+        },
+        breakDone: function() {
+            this.state = TimerState.BREAK_DONE;
+            clearInterval(this.timer);
         },
         onSave: function(result) {
             if(!result.succeed) {
@@ -176,10 +199,11 @@ export default {
 }
 
 .actionarea-enter, .actionarea-leave-to{
+    
     height: 0px;
 }
 .actionarea-enter-active, .actionarea-leave-active {
-    transition: all 500ms ease;
+    transition: all 900ms linear;
 }
 
 </style>
