@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    volumes:
+    - .:/opt/pomot
+    - ./data/mysql:/var/lib/mysql
+    ports:
+    - 8000:80
+    - 13000:3306
+    
