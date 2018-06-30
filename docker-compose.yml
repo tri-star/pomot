@@ -5,8 +5,6 @@ services:
     build: .
     volumes:
     - .:/opt/pomot
-    - ./data/mysql:/var/lib/mysql
+    - ./data:/data
     ports:
     - 8000:80
-    - 13000:3306
-    
