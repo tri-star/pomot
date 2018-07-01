@@ -14,14 +14,22 @@ RUN apt-get update && \
 ENV LANG=ja_JP.utf8
 
 RUN apt-get update && \
-    apt-get install -y less vim curl python php php-fpm nginx && \
+    apt-get install -y less vim curl git python \
+            php php-fpm php-mbstring php-xml php-zip php-json php-mysql \
+            php-xdebug \
+            nginx && \
     apt-get clean
 
 RUN curl -L https://bootstrap.pypa.io/ez_setup.py | python && \
     easy_install supervisor
 
+RUN cd /usr/local/src && \
+    curl -L https://getcomposer.org/installer | php && \
+    chmod 755 composer.phar && \
+    mv composer.phar /usr/local/bin/composer.phar
+
 RUN groupadd -g $GID pomot && \
-    useradd -u $UID -g $GID pomot
+    useradd -u $UID -g $GID --create-home --shell=/bin/bash pomot
 
 RUN rm -f /etc/php/7.2/fpm/pool.d/* && \
     rm -f /etc/nginx/sites-enabled/*
