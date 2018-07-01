@@ -2,13 +2,15 @@
   "name": "pomot",
   "version": "0.0.0",
   "description": "Pomotodo app.",
+  "private": true,
   "main": "index.js",
   "author": "tristar",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "webpack --config=config/webpack.config.js",
-    "dev": "webpack-dev-server --config=config/webpack.config.js"
+    "build": "webpack --config=config/webpack.config.js --progress",
+    "dev": "webpack-dev-server --config=config/webpack.config.js --inline --hot",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=config/webpack.config.js"
   },
   "devDependencies": {
     "babel-loader": "^7.1.4",
@@ -33,6 +35,9 @@
   "dependencies": {
     "sprintf-js": "^1.1.1",
     "vue": "^2.5.16",
-    "vue-input-tag": "^1.0.4"
+    "vue-input-tag": "^1.0.4",
+    "axios": "^0.18",
+    "lodash": "^4.17.4",
+    "cross-env": "^5.1"
   }
 }
