@@ -4,13 +4,14 @@ const path = require('path')
 const webpack = require('webpack')
 const {VueLoaderPlugin} = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
     mode: 'development',
-    entry: path.join(__dirname, '../src/main.js'),
+    entry: path.join(__dirname, '../resources/assets/js/main.js'),
     output: {
         filename: 'main.js',
-        path: path.join(__dirname, '../dist')
+        path: path.join(__dirname, '../public/packs')
     },
     module: {
         rules: [
@@ -67,12 +68,17 @@ module.exports = {
         new VueLoaderPlugin,
         new MiniCssExtractPlugin({
             filename: 'main.css',
-            path: path.join(__dirname, '../dist')
+            path: path.join(__dirname, '../public/packs')
+        }),
+        new ManifestPlugin({
+            writeToFileEmit: true,
+            publicPath: 'http://127.0.0.1:3000/',
         })
     ],
     devServer: {
-        contentBase: path.join(__dirname, '/../dist'),
-        port: 3000
+        contentBase: path.join(__dirname, '../public'),
+        port: 3000,
+        host: '0.0.0.0'
     }
 
 }

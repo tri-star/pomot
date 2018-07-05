@@ -4,6 +4,7 @@
 /data
 /vendor
 /public/hot
+/public/packs
 /public/storage
 /storage/*.key
 /.idea
