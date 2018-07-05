@@ -23,13 +23,22 @@ RUN apt-get update && \
 RUN curl -L https://bootstrap.pypa.io/ez_setup.py | python && \
     easy_install supervisor
 
+RUN cd /usr/local && \
+    curl -LO https://nodejs.org/dist/v8.11.3/node-v8.11.3-linux-x64.tar.xz && \
+    tar -Jxf node-v8.11.3-linux-x64.tar.xz && \
+    mv node-v8.11.3-linux-x64 node && \
+    echo "export PATH=${PATH}:/usr/local/node/bin" > /etc/profile.d/node.sh && \
+    rm node-v8.11.3-linux-x64.tar.xz
+
+RUN groupadd -g $GID pomot && \
+    useradd -u $UID -g $GID --create-home --shell=/bin/bash pomot
+
+RUN su - pomot -c "curl -o- -L https://yarnpkg.com/install.sh | bash"
+
 RUN cd /usr/local/src && \
     curl -L https://getcomposer.org/installer | php && \
     chmod 755 composer.phar && \
     mv composer.phar /usr/local/bin/composer.phar
-
-RUN groupadd -g $GID pomot && \
-    useradd -u $UID -g $GID --create-home --shell=/bin/bash pomot
 
 RUN rm -f /etc/php/7.2/fpm/pool.d/* && \
     rm -f /etc/nginx/sites-enabled/*
