@@ -6,6 +6,8 @@ const {VueLoaderPlugin} = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
+const manifestRoot = (process.env.DEV_SERVER) ? 'http://127.0.0.1:3000/' : ''
+
 module.exports = {
     mode: 'development',
     entry: path.join(__dirname, '../resources/assets/js/main.js'),
@@ -72,7 +74,7 @@ module.exports = {
         }),
         new ManifestPlugin({
             writeToFileEmit: true,
-            publicPath: 'http://127.0.0.1:3000/',
+            publicPath: manifestRoot,
         })
     ],
     devServer: {

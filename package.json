@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config=config/webpack.config.js --progress",
-    "dev": "webpack-dev-server --config=config/webpack.config.js --inline --hot",
+    "dev": "cross-env DEV_SERVER=1 webpack-dev-server --config=config/webpack.config.js --inline --hot",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=config/webpack.config.js"
   },
   "devDependencies": {
