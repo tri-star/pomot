@@ -9,4 +9,11 @@ services:
     ports:
     - 8000:80
     - 3000:3000
-
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    volumes:
+    - .:/data
+    environment:
+      SWAGGER_JSON: /data/swagger.json
+    ports:
+    - 8001:8080
