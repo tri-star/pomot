@@ -9,6 +9,8 @@ services:
     ports:
     - 8000:80
     - 3000:3000
+    depends_on:
+    - db
   swagger-ui:
     image: swaggerapi/swagger-ui
     volumes:
@@ -17,3 +19,12 @@ services:
       SWAGGER_JSON: /data/swagger.json
     ports:
     - 8001:8080
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+    - ./data/mysql:/var/lib/mysql
+    - ./docker/mysql/conf.d:/etc/mysql/conf.d
+    ports:
+    - 13306:3306
