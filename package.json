@@ -6,7 +6,6 @@
   "main": "index.js",
   "author": "tristar",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "build": "webpack --config=config/webpack.config.js --progress",
     "dev": "cross-env DEV_SERVER=1 webpack-dev-server --config=config/webpack.config.js --inline --hot",
@@ -15,14 +14,17 @@
   "devDependencies": {
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
+    "bootstrap": "^4.1.2",
     "chalk": "^2.4.1",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.2",
     "ora": "^2.1.0",
     "rimraf": "^2.6.2",
+    "sass-loader": "^7.0.3",
     "vue-cli": "^2.9.3",
     "vue-loader": "^15.2.2",
     "vue-style-loader": "^4.1.0",
@@ -33,11 +35,11 @@
     "webpack-manifest-plugin": "^2.0.3"
   },
   "dependencies": {
+    "axios": "^0.18",
+    "cross-env": "^5.1",
+    "lodash": "^4.17.4",
     "sprintf-js": "^1.1.1",
     "vue": "^2.5.16",
-    "vue-input-tag": "^1.0.4",
-    "axios": "^0.18",
-    "lodash": "^4.17.4",
-    "cross-env": "^5.1"
+    "vue-input-tag": "^1.0.4"
   }
 }

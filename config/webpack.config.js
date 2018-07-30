@@ -10,7 +10,10 @@ const manifestRoot = (process.env.DEV_SERVER) ? 'http://127.0.0.1:3000/' : ''
 
 module.exports = {
     mode: 'development',
-    entry: path.join(__dirname, '../resources/assets/js/main.js'),
+    entry: [
+        path.join(__dirname, '../resources/assets/js/main.js'),
+        path.join(__dirname, '../resources/assets/sass/app.scss'),
+    ],
     output: {
         filename: 'main.js',
         path: path.join(__dirname, '../public/packs')
@@ -45,7 +48,30 @@ module.exports = {
 
                 ]
 
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true,
+                            sourceMap: true,
+                            importLoaders: 1
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            minimize: true,
+                            sourceMap: true
+                        }
+                    },
+                ]
+
             }
+
         ]
     },
     optimization: {
