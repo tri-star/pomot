@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::redirect('/', 'home', 301);
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/logout', 'Auth\LoginController@logout');

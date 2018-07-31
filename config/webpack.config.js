@@ -12,6 +12,7 @@ module.exports = {
     mode: 'development',
     entry: [
         path.join(__dirname, '../resources/assets/js/main.js'),
+        path.join(__dirname, '../resources/assets/js/bootstrap.js'),
         path.join(__dirname, '../resources/assets/sass/app.scss'),
     ],
     output: {
