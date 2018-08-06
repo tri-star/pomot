@@ -12,3 +12,91 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+
+@mixin clearfix {
+  content:" ";
+  display:block;
+  clear:both;
+}
+
+@media screen and (max-width: 479px) {
+  #app {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 60px 60px auto 60px;
+  }
+
+  #app header {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      background-color: #eee;
+  }
+
+  #app aside {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      background-color: #ff0;
+  }
+
+  #app main {
+      grid-column: 1 / 2;
+      grid-row: 3 / 4;
+      min-height: 500px;
+  }
+
+  #app footer {
+      grid-column: 1 / 2;
+      grid-row: 4 / 5;
+      background-color: #ccc;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  #app {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 60px 1fr 60px;
+
+
+    header {
+      grid-column: 1 / 3;
+      grid-row: 1 / 2;
+      background-color: #eee;
+
+      h1 {
+        margin-left: 10px;
+        float: left;
+      }
+      nav {
+        float: right;
+        ul {
+          list-style: none;
+        }
+      }
+      nav:after {
+        @include clearfix;
+      }
+  
+    }
+
+  }
+
+  #app aside {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      background-color: #ff0;
+  }
+
+  #app main {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      min-height: 400px;
+  }
+
+  #app footer {
+      grid-column: 1 / 3;
+      grid-row: 3 / 4;
+      background-color: #ccc;
+  }
+}
