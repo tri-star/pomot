@@ -1,6 +1,6 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 @import "variables";
@@ -85,6 +85,7 @@ $header_background_color: #444;
           list-style: none;
           margin: 10px;
           color: #eee;
+          padding-left: 0px;
           background-color: lighten($header_background_color, 5%);
   
         }
