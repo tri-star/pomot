@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.pre-login')
 
 @section('content')
-<div class="container">
+<div id="login-page" class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
