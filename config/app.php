@@ -154,11 +154,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Pomot\Providers\AppServiceProvider::class,
+        Pomot\Providers\AuthServiceProvider::class,
+        // Pomot\Providers\BroadcastServiceProvider::class,
+        Pomot\Providers\EventServiceProvider::class,
+        Pomot\Providers\RouteServiceProvider::class,
 
     ],
 

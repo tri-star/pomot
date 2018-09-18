@@ -1,10 +1,10 @@
 <?php
 
-namespace \App\Http\Controllers\Api;
+namespace \Pomot\Http\Controllers\Api;
 
 use Swagger\Annotations as SWG;
 
-class LogController extends \App\Http\Controllers\Controller
+class LogController extends \Pomot\Http\Controllers\Controller
 {
 
     /**
