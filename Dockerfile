@@ -15,7 +15,7 @@ ENV LANG=ja_JP.utf8
 
 RUN apt-get update && \
     apt-get install -y less vim curl git python \
-            php php-fpm php-mbstring php-xml php-zip php-json php-mysql \
+            php php-fpm php-mbstring php-xml php-zip php-json php-mysql php-pdo-sqlite \
             php-xdebug \
             nginx && \
     apt-get clean
