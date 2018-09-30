@@ -25,10 +25,10 @@ class Log extends Model
 
     public function setTitleAttribute(string $value)
     {
-        if(is_null($value)) {
+        if (is_null($value)) {
             throw new DomainException('タイトルは必須です');
         }
-        if(in_array($value, ['', null], true)) {
+        if (in_array($value, ['', null], true)) {
             throw new DomainException('タイトルは必須です');
         }
     }
@@ -36,9 +36,8 @@ class Log extends Model
 
     public function setDescriptionAttribute(string $value)
     {
-        if(in_array($value, ['', null], true)) {
+        if (in_array($value, ['', null], true)) {
             throw new DomainException('説明は必須です');
         }
     }
-
 }

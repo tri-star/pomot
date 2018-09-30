@@ -2,8 +2,8 @@
 
 namespace Pomot\Http\Controllers\Auth;
 
-use Pomot\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Pomot\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {

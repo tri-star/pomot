@@ -2,8 +2,8 @@
 
 namespace Pomot\Http\Controllers\Auth;
 
-use Pomot\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Pomot\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {

@@ -3,10 +3,9 @@
 namespace Tests\Unit\Domains\Log;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Pomot\Domains\Log\Log;
 use Pomot\Domains\Exceptions\DomainException;
+use Pomot\Domains\Log\Log;
 use Tests\TestCase;
-
 
 class ExampleTest extends TestCase
 {
@@ -22,10 +21,10 @@ class ExampleTest extends TestCase
 
         try {
             $log->$key = $value;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->assertTrue($e instanceof $expectedException);
             return;
-        } catch(\TypeError $e) {
+        } catch (\TypeError $e) {
             $this->assertTrue($e instanceof $expectedException);
             return;
         }
@@ -35,9 +34,9 @@ class ExampleTest extends TestCase
     public function getDataForTestRequired()
     {
         return [
-            'title:空白' => ['key' => 'title', 'value' => '', 'expectedException' => DomainException::class ],
-            'title:null' => ['key' => 'title', 'value' => null, 'expectedException' => \TypeError::class],
-            'description:空白' => ['key' => 'description', 'value' => '', 'expectedException' => DomainException::class],
+            'title:空白'         => ['key' => 'title', 'value' => '', 'expectedException' => DomainException::class ],
+            'title:null'       => ['key' => 'title', 'value' => null, 'expectedException' => \TypeError::class],
+            'description:空白'   => ['key' => 'description', 'value' => '', 'expectedException' => DomainException::class],
             'description:null' => ['key' => 'description', 'value' => null, 'expectedException' => \TypeError::class],
         ];
     }

@@ -30,5 +30,4 @@ class LogController extends \Pomot\Http\Controllers\Controller
     public function save()
     {
     }
-
 }
