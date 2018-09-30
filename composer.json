@@ -48,6 +48,12 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "cs-fix": [
+            "php-cs-fixer fix --diff ."
+        ],
+        "cs-fix-test": [
+            "php-cs-fixer fix --diff --dry-run ."
         ]
     },
     "config": {
